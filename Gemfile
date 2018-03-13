@@ -11,6 +11,7 @@
  group :production do
    # Use pg as the production database for Active Record
    gem 'pg'
+   gem 'rails_12factor'
  end
  
  group :development do
@@ -46,3 +47,4 @@
  
  gem 'bootstrap-sass'
  gem 'figaro', '1.0'
+ gem 'devise'
