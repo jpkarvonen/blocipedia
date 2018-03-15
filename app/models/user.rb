@@ -6,6 +6,9 @@ class User < ApplicationRecord
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable, :confirmable
-end
+         
+  after_initialize { self.role = :standard }
 
-#test
+  enum role: [:standard, :admin, :premium]
+
+end
