@@ -32,6 +32,7 @@ class WikisController < ApplicationController
   
   def update
     @wiki = Wiki.find(params[:id])
+    authorize @wiki
     @wiki.assign_attributes(wiki_params)
  
     if @wiki.save
@@ -45,13 +46,11 @@ class WikisController < ApplicationController
   
   def destroy
     @wiki = Wiki.find(params[:id])
+    authorize @wiki
     
     if @wiki.destroy
       flash[:notice] = "\"#{@wiki.title}\" was deleted successfully."
       redirect_to wikis_path
-    else
-      flash.now[:alert] = "There was an error deleting the wiki."
-      render :show
     end
   end
   
