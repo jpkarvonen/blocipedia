@@ -37,5 +37,17 @@ class ChargesController < ApplicationController
             description: "Premium Membership - #{current_user.email}",
             amount: 5000
         }
+        
+    end
+    
+    def downgrade
+        current_user.update_attribute(:role, 'standard')
+        if current_user.save!
+            flash[:notice] = "You've been downgraded :( "
+            redirect_to root_path
+        else 
+            flash[:alert] = "Something went wrong, try again."
+            redirect_to root_path
+        end
     end
 end

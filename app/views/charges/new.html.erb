@@ -1,3 +1,4 @@
+<% if current_user.role != 'premium' %>
  <%= form_tag charges_path do %>
    <h2>Click Below and Pay to become a Premium Member! Only $50!</h2>
    <h4>Benefits include:</h4>
@@ -8,3 +9,8 @@
    </ul>
    <script class='stripe-button' src="https://checkout.stripe.com/checkout.js" data-key="<%= @stripe_btn_data[:key] %>" data-amount="<%= @stripe_btn_data[:amount] %>" data-description="<%= @stripe_btn_data[:description] %>" ></script>
  <% end %>
+ 
+<% else %>
+ <h4>You don't have to do this! But there are no refunds... so whatever.</h4>
+ <%= button_to "Downgrade", {action: "downgrade"}, method: :get %>
+<% end %>
