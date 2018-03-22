@@ -1,6 +1,7 @@
 class WikisController < ApplicationController
   def index
     @wikis = Wiki.all
+    @public_wikis = Wiki.where(private: false)
   end
 
   def show
@@ -13,8 +14,7 @@ class WikisController < ApplicationController
   
   def create
     @wiki = Wiki.new
-    @wiki.title = params[:wiki][:title]
-    @wiki.body = params[:wiki][:body]
+    @wiki.assign_attributes(wiki_params)
     @wiki.user = current_user
     
     if @wiki.save
@@ -56,6 +56,13 @@ class WikisController < ApplicationController
   
   private
   def wiki_params
-    params.require(:wiki).permit(:title, :body)
+    if current_user.admin? || current_user.premium?
+      params.require(:wiki).permit(:title, :body, :private)
+    else
+      params.require(:wiki).permit(:title, :body)
+    end
   end
 end
+
+
+

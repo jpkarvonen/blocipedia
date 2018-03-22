@@ -8,9 +8,16 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :trackable, :validatable, :confirmable
          
   after_initialize :init
+  after_update :publicize
   
   def init
       self.role  ||= :standard  #will set the default value only if it's nil
+  end
+  
+  def publicize
+    if self.standard?
+      self.wikis.update_all(private: false)
+    end
   end
 
   enum role: [:standard, :admin, :premium]
