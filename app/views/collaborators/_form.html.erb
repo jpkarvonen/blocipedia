@@ -1,0 +1,5 @@
+<%= form_tag [wiki, collaborator] do %>
+  <%= text_field_tag :search, params[:search] %>
+  <%= submit_tag "Add User" %>
+  <%= link_to "Remove", [wiki, collab], method: :delete, data: { confirm: 'Are you sure you want to remove this user?'} %>
+<% end %>

@@ -3,6 +3,12 @@ Rails.application.routes.draw do
   devise_for :users
   resources :wikis
   resources :charges, only: [:new, :create]
+  
+  resources :wikis do 
+    resources :collaborations, only: [:create, :destroy]
+  end
+
+
 
   get 'downgrade' => 'charges#downgrade', :as => "downgrade"
 

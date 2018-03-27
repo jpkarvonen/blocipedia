@@ -6,6 +6,8 @@ class Wiki < ApplicationRecord
   
   after_initialize :make_private
   
+ 
+  private
   def make_private
       self.private  ||= false  #will set the default value only if it's nil
   end
