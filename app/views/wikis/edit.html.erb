@@ -10,9 +10,9 @@
     </ul>
   </div>
   <%= render partial: 'form', locals: { wiki: @wiki } %>
-  <div class="hidden">
+  <div>
     <% if @wiki.private? %>
-      <%= render partial: 'collaborators/collaborators', locals: { wiki: @wiki, collaboration: @collaborator } %>
+      <%= render partial: 'collaborators/form', locals: { wiki: @wiki, collaborator: @collaborator } %>
     <% end %>
   </div>
   

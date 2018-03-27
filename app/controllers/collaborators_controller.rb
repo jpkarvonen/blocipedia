@@ -2,10 +2,8 @@ class CollaboratorsController < ApplicationController
     
     def create
         @wiki = Wiki.find(params[:wiki_id])
-        @user = User.where('username LIKE ?', "%#{params[:search]}%")
-                .all_except(current_user)
-                .exclude_collaborators(@wiki)
-                .first
+        @user = User.where('email LIKE ?', "%#{params[:search]}%")
+                #need to exclude current user and users that are already in collaborator
         if @user
             @collaborator = Collaborator.new(wiki: @wiki, user: @user)
             if @collaborator.save
