@@ -1,9 +1,12 @@
 class Wiki < ApplicationRecord
+  
   belongs_to :user
   
-  after_initialize :init
+  scope :free, -> { where( private: false) }
   
-  def init
+  after_initialize :make_private
+  
+  def make_private
       self.private  ||= false  #will set the default value only if it's nil
   end
   
