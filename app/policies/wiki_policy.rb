@@ -1,5 +1,10 @@
 class WikiPolicy < ApplicationPolicy
     
+    def destroy? 
+        user.admin? or user == record.user
+    end
+
+    
   class Scope
      attr_reader :user, :scope
  
@@ -15,7 +20,7 @@ class WikiPolicy < ApplicationPolicy
        elsif user.role == 'premium'
          all_wikis = scope.all
          all_wikis.each do |wiki|
-           if !wiki.private? || wiki.user == user || wiki.collaborator_user_ids.include?(user)
+           if !wiki.private? || wiki.user == user || wiki.users.include?(user)
              wikis << wiki # if the user is premium, only show them public wikis, or that private wikis they created, or private wikis they are a collaborator on
            end
          end
@@ -23,7 +28,7 @@ class WikiPolicy < ApplicationPolicy
          all_wikis = scope.all
          wikis = []
          all_wikis.each do |wiki|
-           if !wiki.private? || wiki.collaborator_user_ids.include?(user)
+           if !wiki.private? || wiki.users.include?(user)
              wikis << wiki # only show standard users public wikis and private wikis they are a collaborator on
            end
          end

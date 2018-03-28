@@ -5,7 +5,6 @@ class WikisController < ApplicationController
 
   def show
    @wiki = Wiki.find(params[:id])
-   @collaborator = Collaborator.new
   end
 
   def new
@@ -57,8 +56,8 @@ class WikisController < ApplicationController
   
   private
   def wiki_params
-    if current_user.admin? || current_user.premium? || wiki.collaborator_user_ids.include?(current_user)
-      params.require(:wiki).permit(:title, :body, :private, :collaborator_user_ids)
+    if current_user.admin? || current_user.premium? || @wiki.users.include?(current_user)
+      params.require(:wiki).permit(:title, :body, :private, :users)
     else
       params.require(:wiki).permit(:title, :body)
     end

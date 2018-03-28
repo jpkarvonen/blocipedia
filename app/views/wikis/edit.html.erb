@@ -10,7 +10,7 @@
     </ul>
   </div>
   <%= render partial: 'form', locals: { wiki: @wiki } %>
-  <div>
+  <div class="row">
     <% if @wiki.private? %>
       <%= render partial: 'collaborators/form', locals: { wiki: @wiki, collaborator: @collaborator } %>
     <% end %>

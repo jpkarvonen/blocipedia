@@ -8,7 +8,7 @@ class CreateCollaborators < ActiveRecord::Migration[5.1]
     
   
     add_index :collaborator_wikis, :wiki_id
-    add_index :collaborator_users, :user_id
+    add_index :users, :user_id
     
   end
 end
