@@ -1,0 +1,13 @@
+- if current_user.role != 'premium'
+  = form_tag charges_path do
+    %h2 Click Below and Pay to become a Premium Member! Only $50!
+    %h4 Benefits include:
+    %ul
+      %li Satisfaction of being an elite premium member
+      %li Street Cred
+      %li Ability to create Private Wikis
+    %script.stripe-button{"data-amount" => "#{@stripe_btn_data[:amount]}", "data-description" => "#{@stripe_btn_data[:description]}", "data-key" => "#{@stripe_btn_data[:key]}", :src => "https://checkout.stripe.com/checkout.js"}
+- else
+  %h4 You don't have to do this! But there are no refunds... so whatever. Fair warning though: all of your private wikis will become public. You still sure?
+  = button_to "Downgrade", {action: "downgrade"}, method: :get
+

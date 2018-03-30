@@ -52,4 +52,5 @@
  gem 'faker', :git => 'https://github.com/stympy/faker.git', :branch => 'master'
  gem 'stripe'
  gem 'redcarpet', '~> 3.0.0'
+ gem 'haml'
  
