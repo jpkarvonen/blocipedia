@@ -1,0 +1,14 @@
+%h1 Edit Wiki
+.row
+  .col-md-4
+    %p Guidelines for wikis
+    %ul
+      %li Make it SFW
+      %li Focus on facts
+      %li Keep the dream alive
+  = render partial: 'form', locals: { wiki: @wiki } 
+  .row
+    - if @wiki.private?
+      = render partial: 'collaborators/form', locals: { wiki: @wiki, collaborator: @collaborator }
+
+  
