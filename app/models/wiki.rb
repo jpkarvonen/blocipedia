@@ -1,7 +1,13 @@
 class Wiki < ApplicationRecord
   
   belongs_to :user
+  has_many :collaborators, dependent: :destroy
+  has_many :users, through: :collaborators
   
+  after_initialize :make_private
+  
+ 
+  private
   scope :free, -> { where( private: false) }
   
   after_initialize :make_private

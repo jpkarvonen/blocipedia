@@ -17,6 +17,7 @@ users = User.all
     )
     
     wiki.update_attribute(:created_at, rand(10.minutes .. 1.year).ago)
+
 end
 
 

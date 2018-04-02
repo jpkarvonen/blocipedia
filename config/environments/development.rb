@@ -53,5 +53,5 @@ Rails.application.configure do
   config.file_watcher = ActiveSupport::EventedFileUpdateChecker
   config.action_mailer.default_url_options = { host: 'https://e0860851efe6409690df0981aa77b558.vfs.cloud9.us-east-2.amazonaws.com/' }
   #Could not render condoler from 216.15.23.216
-  config.web_console.whitelisted_ips = '216.15.23.216'
+  config.web_console.whitelisted_ips = '216.15.23.216', '64.47.219.9'
 end
