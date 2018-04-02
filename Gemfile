@@ -53,4 +53,4 @@
  gem 'stripe'
  gem 'redcarpet', '~> 3.0.0'
  gem 'haml'
- 
+ gem 'friendly_id', '~> 5.1.0'
