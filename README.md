@@ -1,6 +1,4 @@
-# README
-
-## Blocipedia: A custom wiki application built with Ruby on Rails
+# Blocipedia: A custom wiki application built with Ruby on Rails
 
 ### Features Include:
 
